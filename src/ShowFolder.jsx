@@ -2,14 +2,21 @@ import React from "react";
 import File from "./File";
 import Folder from "./Folder";
 
-const ShowFolder = ({ folder }) => {
+const ShowFolder = ({ folder, setFolderStructure }) => {
   return (
     <>
-      {folder.map((item) => {
+      {folder.map((item, index) => {
         if (item?.type === "folder") {
-          return <Folder {...item} />;
+          return (
+            <Folder
+              {...item}
+              key={index}
+              index={index}
+              setFolderStructure={setFolderStructure}
+            />
+          );
         }
-        return <File {...item} />;
+        return <File {...item} key={index} />;
       })}
     </>
   );
